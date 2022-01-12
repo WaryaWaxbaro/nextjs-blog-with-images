@@ -8,3 +8,19 @@
     text-decoration: none;
   }
 }
+
+.link-btn {
+  & a {
+    text-decoration: none;
+    padding: 10px 16px;
+    background-color: #000;
+    color: #fff;
+    border: 1px solid #000;
+    transition: all 250ms ease-out;
+
+    &:hover {
+      background-color: #fff;
+      color: #000;
+    }
+  }
+}
