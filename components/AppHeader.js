@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function AppHeader() {
   return (
     <header className="container py-5">
-      <div className="w-100 p-2 p-md-4 bg-light">
+      <div className="w-100 p-2 p-md-4 bg-light rounded-3">
         <div style={{ maxWidth: "420px" }}>
           <h1 className="fs-1">Nextjs Blog Tutorial</h1>
           <p>
