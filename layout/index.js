@@ -7,6 +7,7 @@ function Layout(props) {
     <>
       <Navbar />
       <main>{children}</main>
+      <footer className="bg-dark w-100" style={{ height: "250px" }}></footer>
     </>
   );
 }

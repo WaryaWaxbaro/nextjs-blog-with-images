@@ -11,7 +11,7 @@ export default [
   },
   {
     id: 2,
-    title: "Title 1",
+    title: "Title 2",
     summary:
       "Donec sodales orci sit amet ipsum posuere ornare. Praesent ornare feugiat auctor. Donec pellentesque",
     image:
@@ -21,7 +21,7 @@ export default [
   },
   {
     id: 3,
-    title: "Title 1",
+    title: "Title 3",
     summary:
       "Donec sodales orci sit amet ipsum posuere ornare. Praesent ornare feugiat auctor. Donec pellentesque",
     image:
@@ -31,7 +31,7 @@ export default [
   },
   {
     id: 4,
-    title: "Title 1",
+    title: "Title 4",
     summary:
       "Donec sodales orci sit amet ipsum posuere ornare. Praesent ornare feugiat auctor. Donec pellentesque",
     image:
@@ -41,7 +41,7 @@ export default [
   },
   {
     id: 5,
-    title: "Title 1",
+    title: "Title 5",
     summary:
       "Donec sodales orci sit amet ipsum posuere ornare. Praesent ornare feugiat auctor. Donec pellentesque",
     image:
@@ -51,7 +51,7 @@ export default [
   },
   {
     id: 6,
-    title: "Title 1",
+    title: "Title 6",
     summary:
       "Donec sodales orci sit amet ipsum posuere ornare. Praesent ornare feugiat auctor. Donec pellentesque",
     image:
