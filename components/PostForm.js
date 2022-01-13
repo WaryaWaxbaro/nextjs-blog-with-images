@@ -1,9 +1,31 @@
+import { useState } from "react";
+import { EditorState } from "draft-js";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { convertToHTML } from "draft-convert";
+import dynamic from "next/dynamic";
+
+const Editor = dynamic(
+  () => import("react-draft-wysiwyg").then((mod) => mod.Editor),
+  { ssr: false }
+);
+
 export default function PostForm(props) {
-  const { post, setPost, handleSubmit } = props;
+  const { post, setPost, handleSubmit, action } = props;
   const { title, summary } = post;
+
+  const [editorState, setEditorState] = useState(() => {
+    EditorState.createEmpty();
+  });
 
   const handleChange = (e) => {
     setPost({ ...post, [e.target.name]: e.target.value });
+  };
+  const onEditorStateChange = async (editorState) => {
+    await setEditorState(editorState);
+    setPost({
+      ...post,
+      content: convertToHTML(editorState.getCurrentContent()),
+    });
   };
 
   return (
@@ -29,6 +51,15 @@ export default function PostForm(props) {
           value={summary}
           onChange={handleChange}
         ></textarea>
+      </div>
+      <div className="mb-3">
+        <label className="form-label">Content</label>
+        <Editor
+          editorState={editorState}
+          wrapperClassName="wyiwyc-wrapper"
+          editorClassName="wyiwyc-editor"
+          onEditorStateChange={onEditorStateChange}
+        />
       </div>
       <div className="d-grid">
         <button

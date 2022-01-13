@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+
 import PostForm from "../components/PostForm";
 
 export default function NewPost() {
@@ -18,7 +19,12 @@ export default function NewPost() {
 
   return (
     <div className="container py-5">
-      <PostForm post={post} setPost={setPost} handleSubmit={handleSubmit} />
+      <PostForm
+        post={post}
+        setPost={setPost}
+        handleSubmit={handleSubmit}
+        action="newPost"
+      />
     </div>
   );
 }
