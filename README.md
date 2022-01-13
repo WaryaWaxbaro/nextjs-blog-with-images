@@ -51,6 +51,27 @@ npm install prisma --save-dev
 
 ```
 npx prisma init
+
+// Result after the command
+shaku@DESKTOP-LRM6ULR MINGW64 ~/Documents/nextjs/nextjs-blog-images (main)
+$ yarn prisma init
+yarn run v1.22.10
+$ C:\Users\shaku\Documents\nextjs\nextjs-blog-images\node_modules\.bin\prisma init
+
+✔ Your Prisma schema was created at prisma/schema.prisma
+  You can now open it in your favorite editor.
+
+warn You already have a .gitignore. Don't forget to exclude .env to not commit any secret.
+
+Next steps:
+1. Set the DATABASE_URL in the .env file to point to your existing database. If your database has no tables yet, read https://pris.ly/d/getting-started
+2. Set the provider of the datasource block in schema.prisma to match your database: postgresql, mysql, sqlite, sqlserver or mongodb (Preview).
+3. Run yarn prisma db pull to turn your database schema into a Prisma schema.
+4. Run yarn prisma generate to generate the Prisma Client. You can then start querying your database.
+
+More information in our documentation:
+https://pris.ly/d/getting-started
+
 ```
 
 3. Setup env and add db setting as shown below
@@ -76,10 +97,32 @@ npx prisma db push
 
 ```
 npx prisma db push
+
+// After successful connection
+Your database is now in sync with your schema. Done in 2.77s
 ```
 
 7. To access your database from Next.js using Prisma. Install and generate Prisma Client
 
 ```
 npm install @prisma/client
+```
+
+8. Create /lib/prisma
+
+```
+import { PrismaClient } from "@prisma/client";
+
+let prisma = PrismaClient;
+
+if (process.env.NODE_ENV === "production") {
+  prisma = new PrismaClient();
+} else {
+  if (!global.prisma) {
+    global.prisma = new PrismaClient();
+  }
+  prisma = global.prisma;
+}
+
+export default prisma;
 ```
