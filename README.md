@@ -34,3 +34,52 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 # Nextjs Blog With Images
+
+## Prisma and Postgres
+
+- Part of this project is based on Check out our [How to Build a Fullstack App with Next.js, Prisma, and PostgreSQL](https://vercel.com/guides/nextjs-prisma-postgres) for more details.
+
+### Steps of connecting the project to database using Prisma and Postgresql
+
+1. Install Prisma
+
+```
+npm install prisma --save-dev
+```
+
+2. Use the Prisma CLI to bootstrap a basic Prisma setup using the following command:
+
+```
+npx prisma init
+```
+
+3. Setup env and add db setting as shown below
+
+```
+// .env
+DATABASE_URL="postgresql://giwuzwpdnrgtzv:d003c6a604bb400ea955c3abd8c16cc98f2d909283c322ebd8e9164b33ccdb75@ec2-54-170-123-247.eu-west-1.compute.amazonaws.com:5432/d6ajekcigbuca9"
+```
+
+4. Modify and add database tables to schema
+
+```
+schema.prisma
+```
+
+5. Create the tables in your database using the Prisma CLI.
+
+```
+npx prisma db push
+```
+
+6. After table has been created, you can use prisma studio to add dummy data, open prisma studio with this command
+
+```
+npx prisma db push
+```
+
+7. To access your database from Next.js using Prisma. Install and generate Prisma Client
+
+```
+npm install @prisma/client
+```
