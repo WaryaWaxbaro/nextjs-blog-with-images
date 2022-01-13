@@ -20,8 +20,15 @@ function BlogItem(props) {
             <div style={{ maxWidth: "420px" }}>
               <h1 className="fs-1">{post.title}</h1>
               <p>{post.summary}</p>
-              <div className="link-btn mt-4">
-                <Link href={`/edit/${post.id}`}>Edit</Link>
+              <div className="d-flex mt-4">
+                <div className="link-btn me-3">
+                  <Link href={`/edit/${post.id}`}>Edit</Link>
+                </div>
+                <div style={{ marginTop: "-6px" }}>
+                  <button className="btn btn-outline-danger rounded-0 px-4">
+                    Delete
+                  </button>
+                </div>
               </div>
             </div>
           </div>
