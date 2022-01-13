@@ -6,13 +6,15 @@ function BlogCard(props) {
   return (
     <div className="card h-100">
       <div className="card-img-top">
-        <Image
-          src={image}
-          alt={title}
-          width={400}
-          height={300}
-          layout="responsive"
-        />
+        {image && (
+          <Image
+            src={image}
+            alt={title}
+            width={400}
+            height={300}
+            layout="responsive"
+          />
+        )}
       </div>
       <div className="card-body">
         <h5 className="card-title">{title}</h5>
