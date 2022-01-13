@@ -30,7 +30,12 @@ export default function NewPost() {
       <div>
         <Link href={`/${postId}`}>Back</Link>
       </div>
-      <PostForm post={post} setPost={setPost} handleSubmit={handleSubmit} />
+      <PostForm
+        post={post}
+        setPost={setPost}
+        handleSubmit={handleSubmit}
+        action="editPost"
+      />
     </div>
   );
 }

@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { EditorState } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { convertToHTML } from "draft-convert";
+import { convertToHTML, convertFromHTML } from "draft-convert";
 import dynamic from "next/dynamic";
 
 const Editor = dynamic(
@@ -16,6 +16,15 @@ export default function PostForm(props) {
   const [editorState, setEditorState] = useState(() => {
     EditorState.createEmpty();
   });
+
+  useEffect(() => {
+    if (action === "editPost") {
+      let editorState = EditorState.createWithContent(
+        convertFromHTML(post.content)
+      );
+      setEditorState(editorState);
+    }
+  }, [action]);
 
   const handleChange = (e) => {
     setPost({ ...post, [e.target.name]: e.target.value });
@@ -66,7 +75,7 @@ export default function PostForm(props) {
           onClick={() => handleSubmit()}
           className="btn btn-primary rounded-0"
         >
-          Save
+          {action === "newPost" ? "Save" : "Update"}
         </button>
       </div>
     </div>
