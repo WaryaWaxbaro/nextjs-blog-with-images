@@ -108,7 +108,14 @@ Your database is now in sync with your schema. Done in 2.77s
 npm install @prisma/client
 ```
 
-8. Create /lib/prisma
+8. Add some initial dummy data using Prisma Studio
+
+```
+npx prisma studio
+
+```
+
+9. Create /lib/prisma
 
 ```
 import { PrismaClient } from "@prisma/client";
