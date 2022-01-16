@@ -24,6 +24,9 @@ function Navbar(props) {
             <li className="nav-item">
               <Link href="/">Home</Link>
             </li>
+            <li className="nav-item">
+              <Link href="/album">Photos</Link>
+            </li>
           </ul>
           <form className="d-flex">
             <input
