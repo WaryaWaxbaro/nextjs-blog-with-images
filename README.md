@@ -167,3 +167,7 @@ Done in 19.88s
 ## Adding more fields with migration
 
 - Follow Prisma Migrate tutorial [Prisma Migrate](https://www.prisma.io/docs/concepts/components/prisma-migrate).
+
+## Uploading photos to Digitalocean space
+
+- How To Upload a File to Object Storage with Node.js [How To Upload a File to Object Storage with Node.js](https://www.digitalocean.com/community/tutorials/how-to-upload-a-file-to-object-storage-with-node-js).

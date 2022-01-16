@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import Image from "next/image";
 
 function Modal(props) {
-  const { photos, setPhotos } = props;
+  const { photos, setPhotos, handleSubmit } = props;
   const photoFile = useRef();
   const handleChange = (e) => {
     let files = e.target.files;
@@ -24,7 +24,6 @@ function Modal(props) {
     photoFile.current.value = null;
   };
 
-  const handleSubmit = () => {};
   return (
     <div
       className="modal fade"
@@ -88,7 +87,7 @@ function Modal(props) {
           </div>
           <div className="modal-footer">
             <button
-              onClick={handleReset}
+              onClick={() => handleReset()}
               type="button"
               className="btn btn-secondary"
               data-bs-dismiss="modal"

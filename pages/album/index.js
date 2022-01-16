@@ -1,8 +1,23 @@
 import { useState } from "react";
 import Modal from "../../components/Modal";
+import { server } from "../../config";
 
 function Album(props) {
   const [photos, setPhotos] = useState([]);
+
+  const handleSubmit = async () => {
+    const body = new FormData();
+    photos.map((photo, index) => {
+      body.append(`photo`, photo);
+    });
+    const response = await fetch(`${server}/api/file-upload/photos`, {
+      method: "POST",
+      body,
+    });
+    const result = await response.json();
+
+    console.log("result ", result);
+  };
 
   return (
     <div className="container py-4">
@@ -25,7 +40,11 @@ function Album(props) {
           </div>
         ))}
       </div>
-      <Modal photos={photos} setPhotos={setPhotos} />
+      <Modal
+        photos={photos}
+        setPhotos={setPhotos}
+        handleSubmit={handleSubmit}
+      />
     </div>
   );
 }
