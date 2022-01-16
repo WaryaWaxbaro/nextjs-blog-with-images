@@ -20,6 +20,7 @@ model Post {
   categories  Category[]
   created_at  DateTime
   updated_at  DateTime
+  image       String     @db.Text
 }
 
 model Category {

@@ -133,3 +133,37 @@ if (process.env.NODE_ENV === "production") {
 
 export default prisma;
 ```
+
+## Updating prisma data attributes
+
+- Adding attribute to database
+- After modifying and a new field has been added run **_prisma db push_**
+
+```
+shaku@DESKTOP-LRM6ULR MINGW64 ~/Documents/nextjs/nextjs-blog-images (main)
+$ yarn prisma db push
+yarn run v1.22.10
+$ C:\Users\shaku\Documents\nextjs\nextjs-blog-images\node_modules\.bin\prisma db push
+Environment variables loaded from .env
+Prisma schema loaded from prisma\schema.prisma
+Datasource "db": PostgreSQL database "defaultdb", schema "public" at "nextjs-blog-db-postgresql-do-user-10267075-0.b.db.ondigitalocean.com:25060"
+
+
+⚠️ We found changes that cannot be executed:
+
+  • Added the required column `image` to the `Post` table without a default value. There are 7 rows in this table, it is not possible to execute this step.
+
+
+√ To apply this change we need to reset the database, do you want to continue? All data will be lost. ... yes
+The PostgreSQL database "defaultdb" from "nextjs-blog-db-postgresql-do-user-10267075-0.b.db.ondigitalocean.com:25060" was successfully reset.
+
+Your database is now in sync with your schema. Done in 14.33s
+
+✔ Generated Prisma Client (3.8.0 | library) to .\node_modules\@prisma\client in 96ms
+
+Done in 19.88s
+```
+
+## Adding more fields with migration
+
+- Follow Prisma Migrate tutorial [Prisma Migrate](https://www.prisma.io/docs/concepts/components/prisma-migrate).

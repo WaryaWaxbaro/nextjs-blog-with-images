@@ -18,6 +18,8 @@ export default function NewPost() {
     created_at: new Date(),
     updated_at: new Date(),
     published: false,
+    image:
+      "https://images.unsplash.com/photo-1561121712-9700339c578c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80",
   });
 
   const handleSubmit = async () => {
