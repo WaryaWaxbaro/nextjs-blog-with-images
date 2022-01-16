@@ -1,6 +1,8 @@
 import Link from "next/link";
+import { server } from "../config";
+import prisma from "../lib/prisma";
 
-const post = {
+const posttt = {
   id: 6,
   title: "Title 1",
   summary:
@@ -12,6 +14,7 @@ const post = {
 };
 
 function BlogItem(props) {
+  const post = JSON.parse(props.post);
   return (
     <div className="container">
       <div className="mx-auto" style={{ maxWidth: "720px" }}>
@@ -34,8 +37,8 @@ function BlogItem(props) {
           </div>
         </header>
         <div>
-          <h6>Published: 12.1.2022</h6>
-          <h6>Author: Ali Isse</h6>
+          <h6>Published: {post.created_at}</h6>
+          <h6>Author: {post.author}</h6>
           <div className="py-4"></div>
           <div dangerouslySetInnerHTML={{ __html: post.content }}></div>
         </div>
@@ -45,3 +48,30 @@ function BlogItem(props) {
 }
 
 export default BlogItem;
+
+export const getStaticPaths = async () => {
+  let posts = await prisma.post.findMany();
+  return {
+    paths: posts.map((post) => ({
+      params: {
+        postId: `${post.id}`,
+      },
+    })),
+    fallback: true,
+  };
+};
+
+export const getStaticProps = async ({ params }) => {
+  let id = params.postId;
+  const post = await prisma.post.findUnique({
+    where: {
+      id: parseInt(id, 10),
+    },
+  });
+
+  return {
+    props: {
+      post: JSON.stringify(post),
+    },
+  };
+};
