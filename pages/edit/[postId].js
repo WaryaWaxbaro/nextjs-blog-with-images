@@ -9,9 +9,7 @@ const postItem = {
   title: "",
   summary: "",
   content: "",
-  author: "",
-  created_at: new Date(),
-  published_at: new Date(),
+  updated_at: new Date(),
 };
 
 export default function NewPost() {
@@ -34,10 +32,21 @@ export default function NewPost() {
       }
     };
     getPost();
-  }, []);
+  }, [postId]);
 
-  const handleSubmit = () => {
-    console.log("submitting post ", post);
+  const handleSubmit = async () => {
+    const response = await fetch(`${server}/api/update`, {
+      method: "POST",
+      body: JSON.stringify(post),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const result = await response.json();
+    const { message, post: newPost } = result;
+    if (message === "success") {
+      router.replace(`/${newPost.id}`);
+    }
   };
 
   return (
