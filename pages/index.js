@@ -8,7 +8,7 @@ import { server } from "../config";
 
 export default function Home(props) {
   const { posts } = props;
-
+  console.log('posts ', posts)
   return (
     <div>
       <AppHeader></AppHeader>
