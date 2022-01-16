@@ -5,7 +5,7 @@ function Navbar(props) {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand" href="/">
           Nextjs Blog
         </a>
         <button

@@ -1,18 +1,20 @@
 import prisma from "../../lib/prisma";
 
 export default async function handler(req, res) {
-  let data = req.body;
-  console.log("req ", req.body);
-  /*   try {
-    let posts = await prisma.post.findMany({
-      include: { categories: true },
+  try {
+    let { id } = req.query;
+    console.log("req ", req.query);
+    const post = await prisma.post.findUnique({
+      where: {
+        id: parseInt(id, 10),
+      },
     });
-    if (posts) {
-      res.status(200).json({ message: "success", posts: posts });
+    if (post) {
+      res.status(200).json({ message: "success", post: post });
     } else {
       res.status(200).json({ message: "error" });
     }
   } catch (error) {
     res.status(200).json({ message: "error" });
-  } */
+  }
 }

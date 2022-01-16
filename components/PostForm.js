@@ -10,8 +10,8 @@ const Editor = dynamic(
 );
 
 export default function PostForm(props) {
-  const { post, setPost, handleSubmit, action } = props;
-  const { title, summary } = post;
+  const { post, setPost, handleSubmit, action, loading } = props;
+  const { title, summary, content } = post;
 
   const [editorState, setEditorState] = useState(() => {
     EditorState.createEmpty();
@@ -19,12 +19,11 @@ export default function PostForm(props) {
 
   useEffect(() => {
     if (action === "editPost") {
-      let editorState = EditorState.createWithContent(
-        convertFromHTML(post.content)
-      );
-      setEditorState(editorState);
+      console.log("inside edit");
+      let editorState = EditorState.createWithContent(convertFromHTML(content));
+      setEditorState(() => editorState);
     }
-  }, [action]);
+  }, [loading]);
 
   const handleChange = (e) => {
     setPost({ ...post, [e.target.name]: e.target.value });
