@@ -12,69 +12,23 @@ const s3 = new aws.S3({
   secretAccessKey: process.env.DO_SPACE_SECRET,
 });
 
-/* const upload = multer({
-  storage: multerS3({
-    s3: s3,
-    bucket: process.env.DO_BUCKET_NAME,
-    acl: "public-read",
-    metadata: function (req, file, cb) {
-      cb(null, { fieldName: file.fieldname });
-    },
-    key: function (req, file, cb) {
-      console.log(file);
-      cb(null, file.originalname);
-    },
-  }),
-}); */
-
-const upload = multer({ dest: "uploads/" });
-
 export default async function handler(req, res) {
   try {
-    const data = await new Promise((resolve, reject) => {
-      const form = formidable({ multiples: true });
-
-      form.parse(req, (err, fields, files) => {
-        if (err) return reject(err);
-        resolve({ fields, files });
-      });
-    });
-
-    console.log("data *** ", data);
-
-    // read file from the temporary path
-    const contents = await fs.createReadStream(data?.files?.photo.filepath);
-    let name = data?.files?.photo.newFilename;
-    let o_name = data?.files?.photo.originalFilename;
-
-    console.log("content *** ", contents);
-
-    /*     const upload = s3.putObject(
+    console.log("req ", req.body);
+    const upload = s3.getObject(
       {
         Bucket: process.env.DO_BUCKET_NAME,
-        Key: name + "_" + o_name,
-        Body: contents,
-        ACL: "public",
+        Key: '"82136f14d784206941a289bc75780c4d"',
       },
       (err, data) => {
         if (err) return err;
         console.log("Your file has been uploaded successfully!", data);
-        return data;
-      }
-    ); */
-    const upload = s3.putObject(
-      {
-        Bucket: process.env.DO_BUCKET_NAME,
-        Key: name + "_" + o_name,
-        Body: contents,
-        ACL: "public-read",
-      },
-      (err, data) => {
-        if (err) return err;
-        console.log("Your file has been uploaded successfully!", data);
+        console.log("Your file has been uploaded successfully! upload", upload);
         return res.status(200).json({ message: "success", photo: data });
       }
     );
+
+    return res.status(200).json({ message: "last message" });
   } catch (error) {
     console.log(error);
     res.status(200).json({ message: "error bad connection" });
